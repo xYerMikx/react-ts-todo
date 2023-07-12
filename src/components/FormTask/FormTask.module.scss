@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 40%;
+
+  &__input {
+    border: none;
+    max-width: 50rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid #9994ff;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #343256;
+      background-color: #fcf9fe;
+    }
+  }
+
+  &__button {
+    max-width: 12rem;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    border: 1px solid #704cbe;
+    padding: 0.5rem;
+    font-size: 1.8rem;
+    background-color: #9994ff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+}
