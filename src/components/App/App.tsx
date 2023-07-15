@@ -28,7 +28,26 @@ const TODOS = [
 
 function App() {
   const [todos, setTodos] = useState(TODOS);
+  const [todoIdForEdit, setTodoIdForEdit] = useState<ITodo["id"] | null>(null);
 
+  const chooseTodoIdForEdit = (id: ITodo["id"]) => {
+    setTodoIdForEdit(id);
+  };
+
+  const changeTodo = ({
+    name,
+    description,
+  }: Omit<ITodo, "isCompleted" | "id">) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === todoIdForEdit) {
+          return { ...todo, name, description };
+        }
+        return todo;
+      })
+    );
+    setTodoIdForEdit(null)
+  };
   const addTodo = ({
     name,
     description,
@@ -43,7 +62,7 @@ function App() {
       },
     ]);
   };
-  const changeTodoStatus = (id: ITodo['id']) => {
+  const changeTodoStatus = (id: ITodo["id"]) => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -54,12 +73,23 @@ function App() {
     );
   };
 
+  const deleteTodo = (id: ITodo["id"]) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <TodoContext.Provider value={TODOS}>
       <div className={styles.app}>
         <span>Todo List</span>
-        <FormTask addTodo={addTodo} />
-        <TodoList todos={todos} changeTodoStatus={changeTodoStatus} />
+        <FormTask addTodo={addTodo} mode="add" />
+        <TodoList
+          todos={todos}
+          changeTodoStatus={changeTodoStatus}
+          deleteTodo={deleteTodo}
+          chooseTodoIdForEdit={chooseTodoIdForEdit}
+          todoIdForEdit={todoIdForEdit}
+          changeTodo={changeTodo}
+        />
       </div>
     </TodoContext.Provider>
   );

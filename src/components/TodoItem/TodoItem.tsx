@@ -11,10 +11,17 @@ export interface ITodo {
 
 export interface ITodoProps {
   todo: ITodo;
-  changeTodoStatus: (id: ITodo['id']) => void;
+  changeTodoStatus: (id: ITodo["id"]) => void;
+  deleteTodo: (id: ITodo["id"]) => void;
+  chooseTodoIdForEdit: (id: ITodo["id"]) => void;
 }
 
-export const TodoItem: FC<ITodoProps> = ({ todo, changeTodoStatus }) => {
+export const TodoItem: FC<ITodoProps> = ({
+  todo,
+  changeTodoStatus,
+  deleteTodo,
+  chooseTodoIdForEdit
+}) => {
   return (
     <div className={styles.item}>
       <input
@@ -28,8 +35,8 @@ export const TodoItem: FC<ITodoProps> = ({ todo, changeTodoStatus }) => {
       <p className={styles.item__name}>{todo.name}</p>
       <p className={styles.item__description}>{todo.description}</p>
       <div className={styles.item__buttons}>
-        <Button textColor="#9994ff" color={ButtonColors.edit} name="Edit" />
-        <Button color={ButtonColors.delete} name="Delete" />
+        <Button onClick={() => chooseTodoIdForEdit(todo.id)} textColor="#9994ff" color={ButtonColors.edit} name="Edit" />
+        <Button onClick={() => deleteTodo(todo.id)} color={ButtonColors.delete} name="Delete" />
       </div>
     </div>
   );
