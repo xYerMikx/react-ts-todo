@@ -21,7 +21,7 @@ export const TodoList: FC<ITodoListProps> = ({
   deleteTodo,
   chooseTodoIdForEdit,
   todoIdForEdit,
-  changeTodo
+  changeTodo,
 }) => {
   return (
     <div>
@@ -29,51 +29,73 @@ export const TodoList: FC<ITodoListProps> = ({
         <div className={styles.todo}>
           <h2>To do:</h2>
           <ul className={styles.todo__list}>
-            {todos
-              .filter((todo) => !todo.isCompleted)
-              .map((todo) => {
-                if (todo.id === todoIdForEdit)
+            {todos.filter((todo) => !todo.isCompleted).length > 0 ? (
+              todos
+                .filter((todo) => !todo.isCompleted)
+                .map((todo) => {
+                  if (todo.id === todoIdForEdit)
+                    return (
+                      <FormTask
+                        key={todo.id}
+                        mode="edit"
+                        editTodo={{
+                          name: todo.name,
+                          description: todo.description,
+                        }}
+                        changeTodo={changeTodo}
+                      />
+                    );
                   return (
-                    <FormTask
-                      key={todo.id}
-                      mode="edit"
-                      editTodo={{
-                        name: todo.name,
-                        description: todo.description,
-                      }}
-                      changeTodo={changeTodo}
-                    />
+                    <li key={todo.id}>
+                      <TodoItem
+                        todo={todo}
+                        changeTodoStatus={changeTodoStatus}
+                        deleteTodo={deleteTodo}
+                        chooseTodoIdForEdit={chooseTodoIdForEdit}
+                      />
+                    </li>
                   );
-                return (
-                  <li key={todo.id}>
-                    <TodoItem
-                      todo={todo}
-                      changeTodoStatus={changeTodoStatus}
-                      deleteTodo={deleteTodo}
-                      chooseTodoIdForEdit={chooseTodoIdForEdit}
-                    />
-                  </li>
-                );
-              })}
+                })
+            ) : (
+              <h2>No tasks to do right now. Add new task to get started!</h2>
+            )}
           </ul>
         </div>
         <div className={styles.completed}>
           <h2>Completed:</h2>
           <ul className={styles.completed__list}>
-            {todos
-              .filter((todo) => todo.isCompleted)
-              .map((todo) => {
-                return (
-                  <li key={todo.id}>
-                    <TodoItem
-                      todo={todo}
-                      changeTodoStatus={changeTodoStatus}
-                      deleteTodo={deleteTodo}
-                      chooseTodoIdForEdit={chooseTodoIdForEdit}
-                    />
-                  </li>
-                );
-              })}
+            {todos.filter((todo) => todo.isCompleted).length > 0 ? (
+              todos
+                .filter((todo) => todo.isCompleted)
+                .map((todo) => {
+                  if (todo.id === todoIdForEdit)
+                    return (
+                      <FormTask
+                        key={todo.id}
+                        mode="edit"
+                        editTodo={{
+                          name: todo.name,
+                          description: todo.description,
+                        }}
+                        changeTodo={changeTodo}
+                      />
+                    );
+                  return (
+                    <li key={todo.id}>
+                      <TodoItem
+                        todo={todo}
+                        changeTodoStatus={changeTodoStatus}
+                        deleteTodo={deleteTodo}
+                        chooseTodoIdForEdit={chooseTodoIdForEdit}
+                      />
+                    </li>
+                  );
+                })
+            ) : (
+              <h2>
+                You have no completed tasks :( 
+              </h2>
+            )}
           </ul>
         </div>
       </div>
