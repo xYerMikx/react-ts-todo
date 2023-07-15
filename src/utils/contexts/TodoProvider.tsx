@@ -2,6 +2,7 @@
 import { FC, ReactNode, useMemo, useState } from "react";
 import { ITodo } from "../../components/TodoItem/TodoItem";
 import { TodoContext } from "./TodoContext";
+import { toast } from "react-toastify";
 
 interface ITodoProviderProps {
   children: ReactNode;
@@ -49,11 +50,15 @@ export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
     );
     setTodoIdForEdit(null);
   };
-
+  const notify = () => toast.error("Please, fill in all fields!", {pauseOnHover: false});
   const addTodo = ({
     name,
     description,
   }: Omit<ITodo, "isCompleted" | "id">) => {
+    if (name.trim() === "" || description.trim() === "") {
+      notify(); 
+      return;
+    }
     setTodos([
       ...todos,
       {

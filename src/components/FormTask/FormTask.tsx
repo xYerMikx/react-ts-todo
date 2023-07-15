@@ -3,6 +3,8 @@ import { Button, ButtonColors } from "../../ui/Button/Button";
 import { ITodo } from "../TodoItem/TodoItem";
 import { TodoContext } from "../../utils/contexts/TodoContext";
 import styles from "./FormTask.module.scss";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 interface IAddForm {
   mode: "add";
@@ -11,7 +13,7 @@ interface IEditForm {
   mode: "edit";
   editTodo: Omit<ITodo, "id" | "isCompleted">;
 }
-type FormTaskProps = IAddForm |  IEditForm
+type FormTaskProps = IAddForm | IEditForm;
 const defaultTodo = { name: "", description: "" };
 
 export const FormTask: FC<FormTaskProps> = (props) => {
@@ -49,6 +51,7 @@ export const FormTask: FC<FormTaskProps> = (props) => {
       ) : (
         <Button color={ButtonColors.main} name="Add Task" onClick={onClick} />
       )}
+      <ToastContainer autoClose={2000} theme='colored' />
     </form>
   );
 };
