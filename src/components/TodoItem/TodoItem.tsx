@@ -20,7 +20,7 @@ export const TodoItem: FC<ITodoProps> = ({
   todo,
   changeTodoStatus,
   deleteTodo,
-  chooseTodoIdForEdit
+  chooseTodoIdForEdit,
 }) => {
   return (
     <div className={styles.item}>
@@ -28,15 +28,24 @@ export const TodoItem: FC<ITodoProps> = ({
         className={styles.item__checkbox}
         type="checkbox"
         defaultChecked={todo.isCompleted}
-        id="checkbox"
+        id={`${todo.id}`}
         onClick={() => changeTodoStatus(todo.id)}
       />
-      {/* <label className={styles.item__label} htmlFor="checkbox"></label> */}
+      <label className={styles.item__label} htmlFor={`${todo.id}`}></label>
       <p className={styles.item__name}>{todo.name}</p>
       <p className={styles.item__description}>{todo.description}</p>
       <div className={styles.item__buttons}>
-        <Button onClick={() => chooseTodoIdForEdit(todo.id)} textColor="#9994ff" color={ButtonColors.edit} name="Edit" />
-        <Button onClick={() => deleteTodo(todo.id)} color={ButtonColors.delete} name="Delete" />
+        <Button
+          onClick={() => chooseTodoIdForEdit(todo.id)}
+          textColor="#9994ff"
+          color={ButtonColors.edit}
+          name="Edit"
+        />
+        <Button
+          onClick={() => deleteTodo(todo.id)}
+          color={ButtonColors.delete}
+          name="Delete"
+        />
       </div>
     </div>
   );
