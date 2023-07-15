@@ -1,19 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { Button, ButtonColors } from "../../ui/Button/Button";
 import { ITodo } from "../TodoItem/TodoItem";
+import { TodoContext } from "../../utils/contexts/TodoContext";
 import styles from "./FormTask.module.scss";
 
 interface IAddForm {
   mode: "add";
-  addTodo: ({ name, description }: Omit<ITodo, "isCompleted" | "id">) => void;
 }
 interface IEditForm {
   mode: "edit";
   editTodo: Omit<ITodo, "id" | "isCompleted">;
-  changeTodo: ({
-    name,
-    description,
-  }: Omit<ITodo, "isCompleted" | "id">) => void;
 }
 
 type FormTaskProps = IAddForm | IEditForm;
@@ -21,15 +17,16 @@ type FormTaskProps = IAddForm | IEditForm;
 const defaultTodo = { name: "", description: "" };
 
 export const FormTask: FC<FormTaskProps> = (props) => {
+  const { changeTodo, addTodo } = useContext(TodoContext);
   const isEdit = props.mode === "edit";
   const [todo, setTodo] = useState(isEdit ? props.editTodo : defaultTodo);
 
   const onClick = () => {
     const todoItem = { name: todo.name, description: todo.description };
     if (isEdit) {
-      return props.changeTodo(todoItem);
+      return changeTodo(todoItem);
     }
-    props.addTodo(todoItem);
+    addTodo(todoItem);
     setTodo({ name: "", description: "" });
   };
 
@@ -51,7 +48,7 @@ export const FormTask: FC<FormTaskProps> = (props) => {
       />
       {isEdit ? (
         <Button color={ButtonColors.main} name="Edit Task" onClick={onClick} />
-        ) : (
+      ) : (
         <Button color={ButtonColors.main} name="Add Task" onClick={onClick} />
       )}
     </form>

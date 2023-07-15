@@ -1,28 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { FormTask } from "../FormTask/FormTask";
-import { ITodo, TodoItem } from "../TodoItem/TodoItem";
+import { TodoItem } from "../TodoItem/TodoItem";
+import { TodoContext } from "../../utils/contexts/TodoContext";
 import styles from "./TodoList.module.scss";
 
-interface ITodoListProps {
-  todos: ITodo[];
-  changeTodoStatus: (id: ITodo["id"]) => void;
-  deleteTodo: (id: ITodo["id"]) => void;
-  chooseTodoIdForEdit: (id: ITodo["id"]) => void;
-  todoIdForEdit: ITodo["id"] | null;
-  changeTodo: ({
-    name,
-    description,
-  }: Omit<ITodo, "isCompleted" | "id">) => void;
-}
-
-export const TodoList: FC<ITodoListProps> = ({
-  todos,
-  changeTodoStatus,
-  deleteTodo,
-  chooseTodoIdForEdit,
-  todoIdForEdit,
-  changeTodo,
-}) => {
+export const TodoList: FC = () => {
+  const {
+    todos,
+    changeTodoStatus,
+    todoIdForEdit,
+    deleteTodo,
+    chooseTodoIdForEdit,
+  } = useContext(TodoContext);
   return (
     <div>
       <div className={styles.status}>
@@ -42,7 +31,6 @@ export const TodoList: FC<ITodoListProps> = ({
                           name: todo.name,
                           description: todo.description,
                         }}
-                        changeTodo={changeTodo}
                       />
                     );
                   return (
@@ -77,7 +65,6 @@ export const TodoList: FC<ITodoListProps> = ({
                           name: todo.name,
                           description: todo.description,
                         }}
-                        changeTodo={changeTodo}
                       />
                     );
                   return (
@@ -92,9 +79,7 @@ export const TodoList: FC<ITodoListProps> = ({
                   );
                 })
             ) : (
-              <h2>
-                You have no completed tasks :( 
-              </h2>
+              <h2>You have no completed tasks :(</h2>
             )}
           </ul>
         </div>
