@@ -1,0 +1,26 @@
+.status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.todo,
+.completed {
+  margin-right: auto;
+  & > h2 {
+    color: #7772c6;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    & > li {
+      min-width: 30rem;
+    }
+  }
+}

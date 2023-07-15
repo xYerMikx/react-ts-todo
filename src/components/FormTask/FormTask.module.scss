@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 1.2rem;
   max-width: 40%;
+  margin-bottom: 3rem;
 
   &__input {
     border: none;
@@ -25,7 +26,7 @@
     border-radius: 1rem;
     border: 1px solid #704cbe;
     padding: 0.5rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     background-color: #9994ff;
     color: white;
     cursor: pointer;
