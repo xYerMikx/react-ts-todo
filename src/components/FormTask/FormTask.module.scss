@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 1.2rem;
   max-width: 40%;
+  margin-bottom: 3rem;
+  min-width: 300px;
 
   &__input {
     border: none;
@@ -25,7 +27,7 @@
     border-radius: 1rem;
     border: 1px solid #704cbe;
     padding: 0.5rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     background-color: #9994ff;
     color: white;
     cursor: pointer;
@@ -34,5 +36,11 @@
     &:hover {
       filter: brightness(110%);
     }
+  }
+}
+
+@media (max-width: 479.98px) {
+  .form {
+    min-width: 80%;
   }
 }

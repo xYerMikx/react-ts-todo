@@ -1,0 +1,42 @@
+.status {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.todo,
+.completed {
+  width: 40%;
+  margin-right: auto;
+  & > h2 {
+    color: #7772c6;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    & > li {
+      min-width: 20rem;
+    }
+  }
+}
+
+
+@media (max-width: 479.98px) {
+  .status {
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .todo, .completed {
+    width: 100%;
+  }
+}

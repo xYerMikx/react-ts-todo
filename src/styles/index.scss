@@ -4,9 +4,16 @@
 html {
   font-family: "Roboto", sans-serif;
   font-size: 10px;
-  background-color: #ebebeb;
+  background-color: #9994ff;
 }
 body {
   font-size: 1.6rem;
   height: 100vh;
+}
+
+
+@media (max-width: 767.98px) {
+  html {
+    font-size: 8px;
+  }
 }

@@ -1,0 +1,26 @@
+.item {
+  background-color: #9994ff;
+  border-radius: 1rem;
+  color: white;
+  padding: 1rem 2rem;
+  max-width: 30rem;
+  position: relative;
+
+  &__name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: -1.7rem 0 1.5rem 4rem;
+  }
+
+  &__description {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+  }
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+}

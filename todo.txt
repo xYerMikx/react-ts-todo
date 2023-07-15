@@ -1,0 +1,22 @@
+TODO:
+
+Layout Basic
+
+[x] - Make layout of adding tasks
+[x] - Make layout of to do and completed areas
+[x] - Do responsiveness for layout
+
+(optional) Layout Extended 
+[] - Add dashboard 
+[] - Add login to account 
+[] - Add header with profile info
+
+Features (use Context API!)
+[x] - Add todo with name and description
+[x] - Conditional rendering for To do and Completed (if no elements - some text)
+(optional) [] - If long description, then hide part of it and make it openable 
+[x] - Remove todo on clicking delete button
+[x] - When checked remove todo from to do section and add it to completed section
+[x] - Edit todo when clicking on edit button
+  [x] - Save text in inputs after clicking edit button
+(optional) [] - Clear all todos 
