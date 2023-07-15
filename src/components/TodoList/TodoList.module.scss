@@ -26,3 +26,17 @@
     }
   }
 }
+
+
+@media (max-width: 479.98px) {
+  .status {
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .todo, .completed {
+    width: 100%;
+  }
+}
