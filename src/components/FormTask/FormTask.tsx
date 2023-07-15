@@ -11,9 +11,7 @@ interface IEditForm {
   mode: "edit";
   editTodo: Omit<ITodo, "id" | "isCompleted">;
 }
-
-type FormTaskProps = IAddForm | IEditForm;
-
+type FormTaskProps = IAddForm |  IEditForm
 const defaultTodo = { name: "", description: "" };
 
 export const FormTask: FC<FormTaskProps> = (props) => {

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { Button, ButtonColors } from "../../ui/Button/Button";
+import { Checkbox } from "../../ui/Checkbox/Checkbox";
 import styles from "./TodoItem.module.scss";
 
 export interface ITodo {
@@ -24,14 +25,11 @@ export const TodoItem: FC<ITodoProps> = ({
 }) => {
   return (
     <div className={styles.item}>
-      <input
-        className={styles.item__checkbox}
-        type="checkbox"
-        defaultChecked={todo.isCompleted}
+      <Checkbox
         id={`${todo.id}`}
+        defaultChecked={todo.isCompleted}
         onClick={() => changeTodoStatus(todo.id)}
       />
-      <label className={styles.item__label} htmlFor={`${todo.id}`}></label>
       <p className={styles.item__name}>{todo.name}</p>
       <p className={styles.item__description}>{todo.description}</p>
       <div className={styles.item__buttons}>

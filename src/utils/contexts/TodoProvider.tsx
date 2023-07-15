@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FC, ReactNode, useMemo, useState } from "react";
+import { FC, ReactNode, useMemo, useState } from "react";
 import { ITodo } from "../../components/TodoItem/TodoItem";
 import { TodoContext } from "./TodoContext";
 
@@ -23,7 +23,7 @@ const TODOS = [
     id: 3,
     name: "Task",
     description: "This is something insane",
-    isCompleted: true,
+    isCompleted: false,
   },
 ];
 
@@ -49,7 +49,7 @@ export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
     );
     setTodoIdForEdit(null);
   };
-  
+
   const addTodo = ({
     name,
     description,
