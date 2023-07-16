@@ -12,6 +12,7 @@ export interface ITodoContextProps {
     name,
     description,
   }: Omit<ITodo, "isCompleted" | "id">) => void;
+  clearTodos: () => void
 }
 
 export const TodoContext = createContext({} as ITodoContextProps);
