@@ -39,6 +39,24 @@
   }
 }
 
+@media (max-width: 100rem) {
+  .form {
+    max-width: 30%;
+    &__input {
+      max-width: 40rem;
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .form {
+    max-width: 20rem;
+    min-width: none;
+    &__input {
+      max-width: 30rem;
+    }
+  }
+}
+
 @media (max-width: 479.98px) {
   .form {
     min-width: 80%;

@@ -19,4 +19,4 @@ Features (use Context API!)
 [x] - When checked remove todo from to do section and add it to completed section
 [x] - Edit todo when clicking on edit button
   [x] - Save text in inputs after clicking edit button
-(optional) [] - Clear all todos 
+(optional) [x] - Clear all todos 

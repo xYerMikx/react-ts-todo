@@ -7,27 +7,29 @@ import { toast } from "react-toastify";
 interface ITodoProviderProps {
   children: ReactNode;
 }
+
 const TODOS = [
   {
     id: 1,
-    name: "Task Name",
-    description: "You need to do something special using React or React Native",
-    isCompleted: false,
+    name: "Make todo list",
+    description:
+      "Make todo list using the description here: https://docs.google.com/document/d/1pi3DlGltYaddgObFd-fJS9neihnZPhhuzNQOj76av-4/edit",
+    isCompleted: true,
   },
   {
     id: 2,
-    name: "Task",
-    description: "This is something great",
+    name: "Get a react traineeship",
+    description:
+      "Get react traineeship here: https://hh.ru/vacancy/83275072?hhtmFrom=chat",
     isCompleted: false,
   },
   {
     id: 3,
-    name: "Task",
-    description: "This is something insane",
+    name: "Become a beast at react/react native",
+    description: "Make progress in react / react native creating stunning apps",
     isCompleted: false,
   },
 ];
-
 export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
   const [todos, setTodos] = useState(TODOS);
   const [todoIdForEdit, setTodoIdForEdit] = useState<ITodo["id"] | null>(null);
@@ -50,13 +52,14 @@ export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
     );
     setTodoIdForEdit(null);
   };
-  const notify = () => toast.error("Please, fill in all fields!", {pauseOnHover: false});
+  const notify = () =>
+    toast.error("Please, fill in all fields!", { pauseOnHover: false });
   const addTodo = ({
     name,
     description,
   }: Omit<ITodo, "isCompleted" | "id">) => {
     if (name.trim() === "" || description.trim() === "") {
-      notify(); 
+      notify();
       return;
     }
     setTodos([
@@ -84,6 +87,10 @@ export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const clearTodos = () => {
+    setTodos([]);
+  };
+
   const value = useMemo(
     () => ({
       todoIdForEdit,
@@ -93,6 +100,7 @@ export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
       addTodo,
       changeTodoStatus,
       chooseTodoIdForEdit,
+      clearTodos,
     }),
     [
       todoIdForEdit,
@@ -102,6 +110,7 @@ export const TodoProvider: FC<ITodoProviderProps> = ({ children }) => {
       addTodo,
       changeTodoStatus,
       chooseTodoIdForEdit,
+      clearTodos,
     ]
   );
 

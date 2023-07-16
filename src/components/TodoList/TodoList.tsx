@@ -3,6 +3,7 @@ import { FormTask } from "../FormTask/FormTask";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { TodoContext } from "../../utils/contexts/TodoContext";
 import styles from "./TodoList.module.scss";
+import { Button, ButtonColors } from "../../ui/Button/Button";
 
 export const TodoList: FC = () => {
   const {
@@ -11,6 +12,7 @@ export const TodoList: FC = () => {
     todoIdForEdit,
     deleteTodo,
     chooseTodoIdForEdit,
+    clearTodos,
   } = useContext(TodoContext);
 
   const filteredTodos = (isCompleted: boolean) =>
@@ -54,6 +56,8 @@ export const TodoList: FC = () => {
 
   return (
     <div>
+      <hr className={styles.hr} />
+      <Button color={ButtonColors.edit} name="Clear All" textColor={ButtonColors.main} onClick={clearTodos} />
       <div className={styles.status}>
         <div className={styles.todo}>
           <h2>To do:</h2>
@@ -67,4 +71,3 @@ export const TodoList: FC = () => {
     </div>
   );
 };
-
